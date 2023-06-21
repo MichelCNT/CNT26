@@ -8,10 +8,6 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
                 <th>Title</th>
                 <td>{{ article.title }}</td>
             </tr>
@@ -21,7 +17,7 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{{ article.date ? article.date|date('Y-m-d') : '' }}</td>
+                <td>{{ article.created_at ? article.created_at|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
                 <th>Author</th>

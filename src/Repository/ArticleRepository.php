@@ -23,6 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function save(Article $entity, bool $flush = false): void
     {
+        $entity->setCreated_at(date_create());
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {

@@ -21,10 +21,13 @@ class Article
     private ?string $Text = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
+    private ?\DateTimeInterface $created_at = null;
 
     #[ORM\Column(length: 255)]
     private ?string $author = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $category = null;
 
     public function getId(): ?int
     {
@@ -55,14 +58,14 @@ class Article
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getCreated_at(): ?\DateTimeInterface
     {
-        return $this->date;
+        return $this->created_at;
     }
 
-    public function setDate(\DateTimeInterface $date): static
+    public function setCreated_at(\DateTimeInterface $created_at): static
     {
-        $this->date = $date;
+        $this->created_at = $created_at;
 
         return $this;
     }
@@ -75,6 +78,18 @@ class Article
     public function setAuthor(string $author): static
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
