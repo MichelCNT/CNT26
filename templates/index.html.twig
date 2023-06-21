@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="container">
+    <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ asset('img/chat.jpg') }}" alt="Chat de la CNT" class="rounded-circle d-block w-100">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('img/chat.jpg') }}" alt="Chat de la CNT" class="rounded-circle  d-block w-100">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Another example headline.</h1>
+                        <p>Some representative placeholder content for the second slide of the carousel.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{{ asset('img/chat.jpg') }}" alt="Chat de la CNT" class="rounded-circle d-block w-100">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+    <hr>
+<div class="container">
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary-emphasis">Information</strong>
+                    <h3 class="mb-0">La CNT, c'est quoi ?</h3>
+                    <div class="mb-1 text-body-secondary">La CNT un syndicat de combat !</div>
+                    <p class="card-text mb-auto">Le nom de la CNT circule désormais régulièrement sur les tracts, dans les manifestations et dans les médias...</p>
+                    <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">En savoir plus</a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{{ asset('img/640px-Logo_CNT.svg.png') }}" width="320px" height="300px" alt="Logo de la CNT">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-success-emphasis">Information</strong>
+                    <h3 class="mb-0">Nous luttes</h3>
+                    <p class="card-text mb-auto">Text d'accroche pour dire nos luttes</p>
+                    <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                        En savoir plus
+                    </a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{{ asset('img/affiche-babouse-web-2.jpg') }}" alt="Affiche lutte de la poste" height="300px">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary-emphasis">Actualité</strong>
+                    <h3 class="mb-0">Les manifestations</h3>
+                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                         En savoir plus
+                    </a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{{ asset('img/Code-travail_resistons_cnt-4d250.jpg') }}" height="350px">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-success-emphasis">Information</strong>
+                    <h3 class="mb-0">Adhérer</h3>
+                    <div class="mb-1 text-body-secondary">Ne nous regardez, pas rejoignez-nous !</div>
+                    <p class="mb-auto">Tu veux nous rejoindre, car tes convictions sont les mêmes que nous alors rejoins nous !</p>
+                    <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                        En savoir plus
+                    </a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{{ asset('img/logoSII.jpg') }}" height="350px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <hr>
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-lg-5 py-5">
+            <div class="col-lg-7 text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">S'abonner à la newsletter</h1>
+                <p class="col-lg-10 fs-4">Ne manquez plus aucun évènement de la CNT 26 en vous inscrivant à la newsletter !</p>
+            </div>
+            <div class="col-md-10 mx-auto col-lg-5">
+                <form class="p-4 p-md-5 border rounded-3 bg-dark">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Adresse mail</label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-danger" type="submit">S'abonner</button>
+                    <hr class="hr-danger my-4">
+                    <small class="text-white">En cliquant sur le bouton, vous acceptez nos terms d'utilisations</small>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

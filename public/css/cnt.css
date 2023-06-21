@@ -1,0 +1,9 @@
+.carousel-inner > .carousel-item > img {
+    height: 360px;
+}
+
+.hr-danger {
+    height: 2px;
+    background: #dc3545;
+    opacity: .5;
+}
