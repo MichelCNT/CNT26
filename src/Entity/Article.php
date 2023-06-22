@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
-    private const CATEGORIES = ['Information', 'Manifestation', 'Lutte'];
+    public const CATEGORIES = ['Information', 'Manifestation', 'Lutte'];
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -33,8 +34,8 @@ class Article
 
 
     #[Assert\Choice(choices: Article::CATEGORIES, message: 'La catégorie n\'est pas valide')]
-    #[ORM\Column(length: 255)]
-    private ?string $category = null;
+    #[ORM\Column]
+    private ?int $category = null;
 
     public function getId(): ?int
     {
@@ -89,15 +90,19 @@ class Article
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?int
     {
         return $this->category;
     }
 
-    public function setCategory(string $category): static
+    public function setCategory(int $category): static
     {
         $this->category = $category;
 
         return $this;
+    }
+
+    public function getSlug(): string {
+        return (new Slugify())->slugify($this->title);
     }
 }

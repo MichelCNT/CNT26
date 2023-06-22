@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 //M*55pgs3*Y!K
@@ -15,7 +16,10 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('Text')
             ->add('author')
-            ->add('category')
+            ->add('category', ChoiceType::class, [
+                'choices' => $this->getChoices()
+
+                ])
         ;
     }
 
@@ -24,5 +28,14 @@ class ArticleType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Article::class,
         ]);
+    }
+
+    private function getChoices(): array
+    {
+        $choices = Article::CATEGORIES;
+        $output = [];
+        foreach ($choices as $k => $v)
+            $output[$v] = $k;
+        return $output;
     }
 }
