@@ -60,10 +60,11 @@ class ArticleController extends AbstractController
         ]);
     }
     #[Route('/{slug}-{id}', name: 'app_article_show', requirements: ['slug' => '[a-zA-Z0-9\-]*'], methods: ['GET'])]
-    public function show(Article $article): Response
+    public function show(Article $article, ArticleRepository $articleRepository): Response
     {
         return $this->render('article/show.html.twig', [
             'article' => $article,
+            'others' => $articleRepository->findByCategory($article->getId(), $article->getCategory(), 3)
         ]);
     }
     /*#[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]

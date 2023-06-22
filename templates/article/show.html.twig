@@ -11,26 +11,28 @@
             <hr class="hr-danger">
             <div class="mb-5">{{ article.text | markdown_to_html }}</div>
         </div>
+
+        {% if others | length > 0 %}
         <div class="col modal modal-sheet position-sticky d-flex">
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-4 shadow bg-dark">
-                    <div class="modal-body p-5">
-                        <h2 class="fw-bold mb-0 text-danger">Un peu plus ?</h2>
-                        <ul class="d-grid gap-4 my-5 list-unstyled small">
-                            <li class="modal-content rounded-4 shadow  d-flex gap-4">
-                                qzdqzdqdq
-                            </li>
-                            <li class="modal-content rounded-4 shadow  d-flex gap-4">
-                                qzdqzdqdq
-                            </li>
-                            <li class="modal-content rounded-4 shadow  d-flex gap-4">
-                                qzdqzdqdq
-                            </li>
+                    <div class="modal-body pt-4 pe-5 ps-5 pb-4">
+                        <h4 class="fw-bold text-danger">D'autres articles</h4>
+                        <ul class="d-grid gap-4 my-4 list-unstyled small">
+                            {% for otherArticle in others %}
+                                <a class=" text-decoration-none text-black" href="{{ path('app_article_show', {id: otherArticle.id, slug: otherArticle.slug}) }}">
+                                    <li class="btn btn-light modal-content rounded-4 shadow  d-flex">
+                                        <p class="text-center mt-1 mb-0 fw-bold">{{ otherArticle.shortTitle }}</p>
+                                        <p class="small text-center">{{ otherArticle.created_at.format("d/m/y") }}</p>
+                                    </li>
+                                </a>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

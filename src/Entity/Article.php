@@ -28,14 +28,24 @@ class Article
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $created_at = null;
 
-    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 15
+    )]
     #[ORM\Column(length: 255)]
     private ?string $author = null;
 
 
-    #[Assert\Choice(choices: Article::CATEGORIES, message: 'La catégorie n\'est pas valide')]
+    #[Assert\PositiveOrZero]
     #[ORM\Column]
     private ?int $category = null;
+
+    #[Assert\Length(
+        min: 10,
+        max: 20
+    )]
+    #[ORM\Column(length: 50)]
+    private ?string $shortTitle = null;
 
     public function getId(): ?int
     {
@@ -104,5 +114,21 @@ class Article
 
     public function getSlug(): string {
         return (new Slugify())->slugify($this->title);
+    }
+
+    public function getCategoryName(): string {
+        return self::CATEGORIES[$this->getCategory()];
+    }
+
+    public function getShortTitle(): ?string
+    {
+        return $this->shortTitle;
+    }
+
+    public function setShortTitle(string $shortTitle): static
+    {
+        $this->shortTitle = $shortTitle;
+
+        return $this;
     }
 }

@@ -14,6 +14,7 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('shortTitle')
             ->add('Text')
             ->add('author')
             ->add('category', ChoiceType::class, [
