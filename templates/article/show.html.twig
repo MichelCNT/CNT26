@@ -1,34 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article{% endblock %}
-
 {% block body %}
-    <h1>Article</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-lg-9">
+            <h2 class="">{{ article.title }}</h2>
+            <p class="small text-end">{{ article.created_at.format("d/m/y") }} écrit par <strong>{{ article.author }}</strong></p>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Text</th>
-                <td>{{ article.Text }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ article.created_at ? article.created_at|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Author</th>
-                <td>{{ article.author }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_article_index') }}">back to list</a>
-
-    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-
-    {{ include('article/_delete_form.html.twig') }}
+            <hr class="hr-danger">
+            <div class="mb-5">{{ article.text | markdown_to_html }}</div>
+        </div>
+        <div class="col modal modal-sheet position-sticky d-flex">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-4 shadow bg-dark">
+                    <div class="modal-body p-5">
+                        <h2 class="fw-bold mb-0 text-danger">Un peu plus ?</h2>
+                        <ul class="d-grid gap-4 my-5 list-unstyled small">
+                            <li class="modal-content rounded-4 shadow  d-flex gap-4">
+                                qzdqzdqdq
+                            </li>
+                            <li class="modal-content rounded-4 shadow  d-flex gap-4">
+                                qzdqzdqdq
+                            </li>
+                            <li class="modal-content rounded-4 shadow  d-flex gap-4">
+                                qzdqzdqdq
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

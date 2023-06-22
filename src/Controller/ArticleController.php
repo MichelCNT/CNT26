@@ -48,7 +48,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
+   /* #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
         $form = $this->createForm(ArticleType::class, $article);
@@ -64,9 +64,9 @@ class ArticleController extends AbstractController
             'article' => $article,
             'form' => $form,
         ]);
-    }
+    }*/
 
-    #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
+    /*#[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
@@ -74,5 +74,5 @@ class ArticleController extends AbstractController
         }
 
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
-    }
+    }*/
 }
