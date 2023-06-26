@@ -12,7 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
-    public const CATEGORIES = ['Information', 'Manifestation', 'Lutte'];
+    public const ARTICLE_BASE_PATH = 'upload/images/articles';
+    public const ARTICLE_UPLOAD_PATH = 'public/upload/images/articles';
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -35,11 +36,6 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $author = null;
 
-
-    #[Assert\PositiveOrZero]
-    #[ORM\Column]
-    private ?int $category = null;
-
     #[Assert\Length(
         max: 20
     )]
@@ -51,6 +47,9 @@ class Article
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?Categorie $categorie = null;
 
     /**
      * @return \DateTimeImmutable|null
@@ -121,24 +120,8 @@ class Article
         return $this;
     }
 
-    public function getCategory(): ?int
-    {
-        return $this->category;
-    }
-
-    public function setCategory(int $category): static
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getSlug(): string {
         return (new Slugify())->slugify($this->title);
-    }
-
-    public function getCategoryName(): string {
-        return self::CATEGORIES[$this->getCategory()];
     }
 
     public function getShortTitle(): ?string
@@ -169,4 +152,19 @@ class Article
         $this->coverImage = $coverImage;
     }
 
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): static
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getCoverImagePath() {
+        return "/" . self::ARTICLE_BASE_PATH . "/" . $this->coverImage;
+    }
 }

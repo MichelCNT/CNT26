@@ -3,10 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
-use App\Form\ArticleType;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -15,8 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ArticleCrudController extends AbstractCrudController
 {
-    public const ARTICLE_BASE_PATH = 'upload/images/articles';
-    public const ARTICLE_UPLOAD_PATH = 'public/upload/images/articles';
+
     public static function getEntityFqcn(): string
     {
         return Article::class;
@@ -30,11 +28,11 @@ class ArticleCrudController extends AbstractCrudController
             TextField::new('title'),
             TextField::new('shortTitle'),
             TextField::new('author'),
-            ChoiceField::new('category')->setChoices(ArticleType::getChoices()),
+            AssociationField::new('categorie'),
             TextEditorField::new('text'),
             ImageField::new('coverImage')
-                ->setBasePath(self::ARTICLE_BASE_PATH)
-                ->setUploadDir(self::ARTICLE_UPLOAD_PATH),
+                ->setBasePath(Article::ARTICLE_BASE_PATH)
+                ->setUploadDir(Article::ARTICLE_UPLOAD_PATH),
             DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->hideOnForm(),
         ];

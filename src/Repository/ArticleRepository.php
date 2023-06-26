@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Article;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -23,7 +24,7 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function save(Article $entity, bool $flush = false): void
     {
-        $entity->setCreated_at(date_create());
+        $entity->setCreatedAt(new DateTimeImmutable);
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
@@ -46,11 +47,11 @@ class ArticleRepository extends ServiceEntityRepository
     public function findByCategory($actualArticle, $cat, $limit): array
    {
         $result = $this->createQueryBuilder('article')
-            ->andWhere('article.category = :cat')
+            ->andWhere('article.categorie = :cat')
             ->andWhere('article.id != :actualArticle')
            ->setParameter('cat', $cat)
            ->setParameter('actualArticle', $actualArticle)
-            ->orderBy('article.created_at', 'DESC')
+            ->orderBy('article.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;

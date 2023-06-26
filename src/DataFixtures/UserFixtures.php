@@ -21,6 +21,7 @@ class UserFixtures extends Fixture
         $user  = new User();
         $user->setUsername('demo');
         $user->setPassword($this->hasher->hashPassword($user, 'demo'));
+        $user->addRoles('ROLE_SUPER_ADMIN');
         $manager->persist($user);
         $manager->flush();
     }

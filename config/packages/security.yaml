@@ -25,8 +25,9 @@ security:
                 path: app_logout
                 target: app_index
 
-
-
-
     access_control:
-         - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/admin, roles: ROLE_PUBLICATION }
+
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+        ROLE_ADMIN: [ROLE_PUBLICATION]

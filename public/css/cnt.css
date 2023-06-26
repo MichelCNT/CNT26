@@ -2,6 +2,10 @@
     min-height: 600px;
 }
 
+.bg-red {
+    background-color: rgba(161,14,7);
+}
+
 .carousel-inner > .carousel-item > img {
     height: 360px;
 }

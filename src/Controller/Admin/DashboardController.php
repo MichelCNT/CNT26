@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Entity\Categorie;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -14,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
-    #[IsGranted('ROLE_ADMIN')]
+
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
@@ -31,10 +33,25 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Acceuil', 'fa fa-home');
+
         yield MenuItem::section('Publications');
         yield MenuItem::subMenu('Actions',  'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Ajout de publication', 'fas fa-plus', Article::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir les publications', 'fas fa-eye', Article::class)
         ]);
+
+        yield MenuItem::section('Catégories');
+        yield MenuItem::subMenu('Actions',  'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Ajout de catégorie', 'fas fa-plus', Categorie::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les catégories', 'fas fa-eye', Categorie ::class)
+        ]);
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::section('Utilisateurices');
+            yield MenuItem::subMenu('Actions',  'fas fa-bars')->setSubItems([
+                MenuItem::linkToCrud('Ajout d\'un compte', 'fas fa-plus', User::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Voir les comptes', 'fas fa-eye', User::class)
+            ]);
+        }
     }
 }

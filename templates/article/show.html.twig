@@ -6,7 +6,7 @@
         <div class="col-1"></div>
         <div class="col-lg-9">
             <h2 class="">{{ article.title }}</h2>
-            <p class="small text-end">{{ article.created_at.format("d/m/y") }} écrit par <strong>{{ article.author }}</strong></p>
+            <p class="small text-end">{{ article.createdAt.format("d/m/y") }} écrit par <strong>{{ article.author }}</strong></p>
 
             <hr class="hr-danger">
             <div class="mb-5">{{ article.text | markdown_to_html }}</div>
