@@ -6,7 +6,7 @@
         <div class="col-1"></div>
         <div class="col-lg-9">
             <h2 class="">{{ article.title }}</h2>
-            <p class="small text-end">{{ article.createdAt.format("d/m/y") }} écrit par <strong>{{ article.author }}</strong></p>
+            <p class="small text-end">{{ article.updatedAt ? "mise à jour le " ~ article.updatedAt.format("d/m/y à H:i") : article.createdAt.format("d/m/y à H:i") }} écrit par <strong>{{ article.author }}</strong></p>
 
             <hr class="hr-danger">
             <div class="mb-5">{{ article.text | markdown_to_html }}</div>
@@ -23,7 +23,7 @@
                                 <a class=" text-decoration-none text-black" href="{{ path('app_article_show', {id: otherArticle.id, slug: otherArticle.slug}) }}">
                                     <li class="btn btn-light modal-content rounded-4 shadow  d-flex">
                                         <p class="text-center mt-1 mb-0 fw-bold">{{ otherArticle.shortTitle }}</p>
-                                        <p class="small text-center">{{ otherArticle.created_at.format("d/m/y") }}</p>
+                                        <p class="small text-center">{{ article.updatedAt ? article.updatedAt.format("d/m/y à H:i") : article.createdAt.format("d/m/y à H:i") }}</p>
                                     </li>
                                 </a>
                             {% endfor %}

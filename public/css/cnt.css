@@ -5,6 +5,14 @@
 .bg-red {
     background-color: rgba(161,14,7);
 }
+.text-shadow {
+    text-shadow: 2px 2px 5px black;
+}
+
+.text-shadow-white {
+    text-shadow: 1px 0 #410500, -1px 0 #410500, 0 1px #410500, 0 -1px #410500,
+    1px 1px #410500, -1px -1px #410500, 1px -1px #410500, -1px 1px #410500;
+}
 
 .carousel-inner > .carousel-item > img {
     height: 360px;

@@ -27,30 +27,33 @@ class ArticleCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             TextField::new('title'),
             TextField::new('shortTitle'),
-            TextField::new('author'),
+            TextField::new('author')->onlyWhenCreating(),
             AssociationField::new('categorie'),
             TextEditorField::new('text'),
             ImageField::new('coverImage')
                 ->setBasePath(Article::ARTICLE_BASE_PATH)
-                ->setUploadDir(Article::ARTICLE_UPLOAD_PATH),
+                ->setUploadDir(Article::ARTICLE_UPLOAD_PATH)
+                ->setRequired(false),
             DateTimeField::new('createdAt')->hideOnForm(),
             DateTimeField::new('updatedAt')->hideOnForm(),
         ];
     }
 
-    /**
-     * @throws \Exception
-     */
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if (!$entityInstance instanceof Article) return;
 
-        if ($entityInstance->getCreatedAt() == null) {
-            $entityInstance->setCreatedAt(new \DateTimeImmutable());
-        } else $entityInstance->setUpdatedAt(new \DateTimeImmutable());
+        $entityInstance->setCreatedAt(new \DateTimeImmutable());
 
         parent::persistEntity($entityManager, $entityInstance);
     }
 
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        if (!$entityInstance instanceof Article) return;
 
+        $entityInstance->setUpdatedAt(new \DateTimeImmutable());
+
+        parent::updateEntity($entityManager, $entityInstance);
+    }
 }
