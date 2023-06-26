@@ -17,6 +17,12 @@ class IndexController extends AbstractController
         return $this->render('index.html.twig');
     }
 
+    #[Route('/la-cnt', name: 'app_la_cnt')]
+    public function la_cnt(Request $request): Response
+    {
+        return $this->render('la-cnt.html.twig');
+    }
+
     private function addNewsletterEmail(string $email)
     {
     }
