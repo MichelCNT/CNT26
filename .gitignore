@@ -84,6 +84,7 @@ fabric.properties
 /public/bundles/
 /var/
 /vendor/
+/public/upload/images/articles/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
