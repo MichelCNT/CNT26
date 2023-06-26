@@ -42,7 +42,7 @@ class ArticleController extends AbstractController
 
 
 
-    #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]
+    #[Route('/{slug}-{id}/edit', name: 'app_article_edit', requirements: ['slug' => '[a-zA-Z0-9\-]*'], methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
         $form = $this->createForm(ArticleType::class, $article);

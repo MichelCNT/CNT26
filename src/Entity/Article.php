@@ -6,6 +6,7 @@ use App\Repository\ArticleRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -25,11 +26,10 @@ class Article
     #[ORM\Column(type: Types::TEXT)]
     private ?string $Text = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $created_at = null;
+    #[ORM\Column(nullable: false)]
+    private ?\DateTimeImmutable $createdAt = null;
 
     #[Assert\Length(
-        min: 2,
         max: 15
     )]
     #[ORM\Column(length: 255)]
@@ -41,11 +41,32 @@ class Article
     private ?int $category = null;
 
     #[Assert\Length(
-        min: 10,
         max: 20
     )]
     #[ORM\Column(length: 50)]
     private ?string $shortTitle = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $coverImage = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    /**
+     * @return \DateTimeImmutable|null
+     */
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTimeImmutable|null $updatedAt
+     */
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
 
     public function getId(): ?int
     {
@@ -76,14 +97,14 @@ class Article
         return $this;
     }
 
-    public function getCreated_at(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreated_at(\DateTimeInterface $created_at): static
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -131,4 +152,21 @@ class Article
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getCoverImage(): ?string
+    {
+        return $this->coverImage;
+    }
+
+    /**
+     * @param string|null $coverImage
+     */
+    public function setCoverImage(?string $coverImage): void
+    {
+        $this->coverImage = $coverImage;
+    }
+
 }

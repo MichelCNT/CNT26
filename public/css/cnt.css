@@ -1,3 +1,7 @@
+.min-height {
+    min-height: 600px;
+}
+
 .carousel-inner > .carousel-item > img {
     height: 360px;
 }
