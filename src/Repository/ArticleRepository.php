@@ -46,19 +46,27 @@ class ArticleRepository extends ServiceEntityRepository
      */
     public function findByCategory($actualArticle, $cat, $limit): array
    {
-        $result = $this->createQueryBuilder('article')
-            ->andWhere('article.categorie = :cat')
-            ->andWhere('article.id != :actualArticle')
+       $result = $this->createQueryBuilder('article')
+           ->andWhere('article.categorie = :cat')
+           ->andWhere('article.id != :actualArticle')
            ->setParameter('cat', $cat)
            ->setParameter('actualArticle', $actualArticle)
-            ->orderBy('article.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult()
-        ;
+           ->orderBy('article.createdAt', 'DESC')
+           ->getQuery()
+           ->getResult();
 
-        if (sizeof($result) > $limit) {
-            return array_slice($result, 0, $limit);
-        } else return $result;
+       if (sizeof($result) > $limit) {
+           return array_slice($result, 0, $limit);
+       } else return $result;
+   }
+
+    public function getLatestArticle($limit)
+    {
+        return $this->createQueryBuilder('article')
+            ->orderBy('article.createdAt', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
     }
 
 //    public function findOneBySomeField($value): ?Article

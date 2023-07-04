@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-1"></div>
-        <div class="col-lg-9">
-            <h2 class="">{{ article.title }}</h2>
-            <p class="small text-end">{{ article.updatedAt ? "mise à jour le " ~ article.updatedAt.format("d/m/y à H:i") : article.createdAt.format("d/m/y à H:i") }} écrit par <strong>{{ article.author }}</strong></p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-9">
+                <h2 class="">{{ article.title }}</h2>
+                <p class="small text-end">{{ article.updatedAt ? "mise à jour le " ~ article.updatedAt.format("d/m/y à H:i") : article.createdAt.format("d/m/y à H:i") }}
+                    écrit par <strong>{{ article.author }}</strong></p>
 
-            <hr class="hr-danger">
-            <div class="mb-5">{{ article.text | markdown_to_html }}</div>
-        </div>
+                <hr class="hr-danger">
+                <div class="mb-5">{{ article.text | markdown_to_html }}</div>
+            </div>
 
-        {% if others | length > 0 %}
-        <div class="col modal modal-sheet position-sticky d-flex">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-4 shadow bg-dark">
+            {% if others | length > 0 %}
+                <div class="col modal modal-sheet position-sticky d-flex">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content rounded-4 shadow bg-dark">
                     <div class="modal-body pt-4 pe-5 ps-5 pb-4">
                         <h4 class="fw-bold text-danger">D'autres articles</h4>
                         <ul class="d-grid gap-4 my-4 list-unstyled small">

@@ -91,3 +91,4 @@ fabric.properties
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+/.idea/symfony2.xml

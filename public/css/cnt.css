@@ -41,6 +41,44 @@
 }
 
 .publication-text {
-    color: rgba(255,0,0);
+    color: rgba(255, 0, 0);
     opacity: 0;
+}
+
+.img-text:hover {
+    color: white;
+    opacity: 1;
+}
+
+.img-text {
+    opacity: 0;
+}
+
+.img-card:hover .img-text {
+    opacity: 1;
+}
+
+.tales {
+    width: 100%;
+}
+
+.carousel-inner {
+    width: 100%;
+    max-height: 400px !important;
+}
+
+.carousel-item {
+    text-align: center;
+}
+
+.carousel-inner img {
+    display: inline-block !important;
+}
+
+.carousel-caption-bg {
+    background-color: rgba(54, 54, 54, 0.31);
+}
+
+.img-card {
+    min-height: 350px;
 }

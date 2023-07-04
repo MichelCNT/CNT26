@@ -4,16 +4,16 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Cocur\Slugify\Slugify;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
 {
-    public const ARTICLE_BASE_PATH = 'upload/images/articles';
-    public const ARTICLE_UPLOAD_PATH = 'public/upload/images/articles';
+    public const UPLOAD_IMAGES_BASE_PATH = 'upload/images/articles';
+    public const UPLOAD_PATH_COMPLETE = 'public/upload/images/articles';
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -28,7 +28,7 @@ class Article
     private ?string $Text = null;
 
     #[ORM\Column(nullable: false)]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?DateTimeImmutable $createdAt = null;
 
     #[Assert\Length(
         max: 15
@@ -46,23 +46,23 @@ class Article
     private ?string $coverImage = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private ?DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?Categorie $categorie = null;
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return DateTimeImmutable|null
      */
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
     /**
-     * @param \DateTimeImmutable|null $updatedAt
+     * @param DateTimeImmutable|null $updatedAt
      */
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): void
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
@@ -96,12 +96,12 @@ class Article
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt(DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -165,6 +165,6 @@ class Article
     }
 
     public function getCoverImagePath() {
-        return "/" . self::ARTICLE_BASE_PATH . "/" . $this->coverImage;
+        return "/" . self::UPLOAD_IMAGES_BASE_PATH . "/" . $this->coverImage;
     }
 }

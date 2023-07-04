@@ -1,0 +1,10 @@
+<nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="link-body-emphasis fw-semibold text-decoration-none"
+                                       href="{{ path('app_directory') }}"><i class="fa-solid fa-house"></i></a></li>
+        {% if directory is defined %}
+            <li class="breadcrumb-item active" aria-current="page">{{ directory.name }}</li>
+        {% endif %}
+    </ol>
+</nav>
+<hr>

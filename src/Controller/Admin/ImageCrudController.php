@@ -3,22 +3,22 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Entity\Image;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class ArticleCrudController extends AbstractCrudController
+class ImageCrudController extends AbstractCrudController
 {
-
     public static function getEntityFqcn(): string
     {
-        return Article::class;
+        return Image::class;
     }
 
 
@@ -26,12 +26,10 @@ class ArticleCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('title'),
-            TextField::new('shortTitle'),
-            TextField::new('author')->onlyWhenCreating(),
-            AssociationField::new('categorie'),
-            TextEditorField::new('text'),
-            ImageField::new('coverImage')
+            TextField::new('name', 'Nom de la photo'),
+            AssociationField::new('directory', 'Dossier'),
+            BooleanField::new('active', 'Publique ?'),
+            ImageField::new('path', 'Image')
                 ->setBasePath(Article::UPLOAD_IMAGES_BASE_PATH)
                 ->setUploadDir(Article::UPLOAD_PATH_COMPLETE)
                 ->setRequired(false),
@@ -42,7 +40,7 @@ class ArticleCrudController extends AbstractCrudController
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        if (!$entityInstance instanceof Article) return;
+        if (!$entityInstance instanceof Image) return;
 
         $entityInstance->setCreatedAt(new DateTimeImmutable());
 
@@ -51,7 +49,7 @@ class ArticleCrudController extends AbstractCrudController
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        if (!$entityInstance instanceof Article) return;
+        if (!$entityInstance instanceof Image) return;
 
         $entityInstance->setUpdatedAt(new DateTimeImmutable());
 

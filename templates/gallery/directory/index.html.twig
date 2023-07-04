@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container px-4 py-5" id="custom-cards">
+        <h2 class="pb-2 border-bottom">Dossiers</h2>
+
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+            {% for dossier in dossiers %}
+                <div class="col">
+                    <a class="text-decoration-none"
+                       href="{{ path('app_directory_show', {id: dossier.id, slug: dossier.slug}) }}">
+                        <div class="card card-cover overflow-hidden rounded-4 shadow-lg">
+                            <div class="publication d-flex flex-column h-100 p-5 pb-3 text-white">
+                                <h4 class="pt-5 text-shadow-white mb-4 fw-bold text-danger">{{ dossier.name }}</h4>
+                                <ul class="d-flex list-unstyled mt-auto">
+                                    <li class="me-auto">
+                                        <img src="{{ asset('img/chat.jpg') }}" alt="Anarchat"
+                                             class="rounded-circle border border-white" width="32" height="32">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
