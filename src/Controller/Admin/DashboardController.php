@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Entity\Directory;
+use App\Entity\File;
 use App\Entity\Image;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -48,13 +49,9 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         yield MenuItem::section('Gallerie');
-        yield MenuItem::subMenu('Dossiers', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Ajout de dossiers', 'fas fa-plus', Directory::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir les dossiers', 'fas fa-eye', Directory ::class)
-        ]);
-        yield MenuItem::subMenu('Photos', 'fas fa-bars')->setSubItems([
-            MenuItem::linkToCrud('Ajout d\'images', 'fas fa-plus', Image::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Voir les images', 'fas fa-eye', Image ::class)
+        yield MenuItem::subMenu('Fichiers', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Ajout de dossiers', 'fas fa-plus', File::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les dossiers', 'fas fa-eye', File ::class)
         ]);
 
         if ($this->isGranted('ROLE_ADMIN')) {
