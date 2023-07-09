@@ -2,19 +2,13 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Article;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use function PHPUnit\Framework\throwException;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -31,10 +25,9 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->hideOnForm(),
-            TextField::new('username'),
-            EmailField::new('email'),
-            ChoiceField::new('roles')->setChoices([
+            TextField::new('username', 'Pseudonyme'),
+            EmailField::new('email', 'Adresse mail'),
+            ChoiceField::new('roles', 'Permissions')->setChoices([
                 'Divin créateur' => 'ROLE_SUPER_ADMIN',
                 'Droit administrateur' => 'ROLE_ADMIN',
                 'Droit de publication' => 'ROLE_PUBLICATION',
@@ -42,8 +35,6 @@ class UserCrudController extends AbstractCrudController
             ])
                 ->allowMultipleChoices()
                 ->setPermission('ROLE_SUPER_ADMIN')->renderAsBadges(),
-
-            TextField::new('password')->hideOnIndex()->hideOnDetail()
         ];
     }
 

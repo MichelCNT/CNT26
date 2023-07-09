@@ -47,7 +47,7 @@ class FileRepository extends ServiceEntityRepository
         $files = $this->findAll();
         $result = [];
         foreach ($files as $file) {
-            if ($file->getFiles() == null && $file->isActive())
+            if ($file->getFile() == null && $file->isActive())
                 $result[] = $file;
         }
 
@@ -63,4 +63,11 @@ class FileRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function findFilesOf(File $file)
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.file = :parentFile')
+            ->setParameter('parentFile', $file)
+            ->getQuery()->getResult();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\File;
 use App\Repository\FileRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,15 +16,27 @@ class FileController extends AbstractController
     {
         return $this->render('files/index.html.twig', [
             'files' => $repository->findFirstLevel(true),
+            'parentsFile' => []
         ]);
     }
 
-    /*    #[Route('/{slug}-{id}', name: 'app_file_show', requirements: ['slug' => '[a-zA-Z0-9\-]*'], methods: ['GET'])]
-        public function show(File $directory, FileRepository $repository): Response
-        {
-            return $this->render('file/show.html.twig', [
-                'directory' => $directory,
-                'images' => $repository->findBy(['directory' => $directory]),
-            ]);
-        }*/
+    #[Route('/{slug}-{id}', name: 'app_file_show', requirements: ['slug' => '[a-zA-Z0-9\-]*'], methods: ['GET'])]
+    public function show(File $file, FileRepository $repository): Response
+    {
+        $parentsFile = [];
+        $actualFile = $file;
+        do {
+            $parent = $actualFile->getFile();
+            if ($parent == null) break;
+            $parentsFile[] = $parent;
+            $actualFile = $parent;
+        } while (true);
+
+
+        return $this->render('files/index.html.twig', [
+            'files' => $repository->findFilesOf($file),
+            'parentsFile' => array_reverse($parentsFile),
+            'actualFile' => $file
+        ]);
+    }
 }

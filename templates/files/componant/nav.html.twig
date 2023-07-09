@@ -2,9 +2,19 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a class="link-body-emphasis fw-semibold text-decoration-none"
                                        href="{{ path('app_files_index') }}"><i class="fa-solid fa-house"></i></a></li>
-        {#        {% if file is defined %}
-            <li class="breadcrumb-item active" aria-current="page">{{ directory.name }}</li>
-        {% endif %} #}
+
+
+        {% for parentFile in parentsFile %}
+            <li class="breadcrumb-item" aria-current="page">
+                <a class="link-body-emphasis fw-semibold text-decoration-none"
+                   href="{{ path('app_file_show', {id: parentFile.id, slug: parentFile.slug}) }}">{{ parentFile.name }}</a>
+            </li>
+        {% endfor %}
+        {% if actualFile is defined %}
+            <li class="breadcrumb-item active" aria-current="page">
+                {{ actualFile.name }}
+            </li>
+        {% endif %}
     </ol>
 </nav>
 <hr>

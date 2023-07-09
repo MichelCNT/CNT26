@@ -3,33 +3,31 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Entity\File;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class ArticleCrudController extends AbstractCrudController
+class FileCrudController extends AbstractCrudController
 {
-
     public static function getEntityFqcn(): string
     {
-        return Article::class;
+        return File::class;
     }
-
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title', 'Titre'),
-            TextField::new('shortTitle', 'Titre court'),
-            TextField::new('author', 'Auteurice')->onlyWhenCreating(),
-            AssociationField::new('categorie', 'Catégorie'),
-            TextEditorField::new('text', 'Texte'),
-            ImageField::new('coverImage', 'Image de couverture')
+            TextField::new('name', 'Nom du fichier'),
+            BooleanField::new('active', 'Activé ?'),
+            AssociationField::new('files', 'Fichiers'),
+            AssociationField::new('file', 'Fichier Parent')->hideOnForm(),
+            ImageField::new('filePath', 'Contenu')
                 ->setBasePath(Article::UPLOAD_IMAGES_BASE_PATH)
                 ->setUploadDir(Article::UPLOAD_PATH_COMPLETE)
                 ->setRequired(false),
@@ -40,7 +38,7 @@ class ArticleCrudController extends AbstractCrudController
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        if (!$entityInstance instanceof Article) return;
+        if (!$entityInstance instanceof File) return;
 
         $entityInstance->setCreatedAt(new DateTimeImmutable());
 
@@ -49,7 +47,7 @@ class ArticleCrudController extends AbstractCrudController
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        if (!$entityInstance instanceof Article) return;
+        if (!$entityInstance instanceof File) return;
 
         $entityInstance->setUpdatedAt(new DateTimeImmutable());
 

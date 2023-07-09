@@ -43,6 +43,11 @@ class File
         $this->files = new ArrayCollection();
     }
 
+    public function isDirectory(): bool
+    {
+        return count($this->getFiles()) > 0;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,6 +113,21 @@ class File
         return $this;
     }
 
+    public function getFileBasePath(): string
+    {
+        return "/" . Article::UPLOAD_IMAGES_BASE_PATH . "/" . $this->getFilePath();
+    }
+
+    public function getSlug(): ?string
+    {
+        return (new Slugify())->slugify($this->name);
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
     public function getFile(): ?self
     {
         return $this->file;
@@ -148,20 +168,5 @@ class File
         }
 
         return $this;
-    }
-
-    public function getFileBasePath(): string
-    {
-        return "/" . Article::UPLOAD_IMAGES_BASE_PATH . "/" . $this->getFilePath();
-    }
-
-    public function getSlug(): ?string
-    {
-        return (new Slugify())->slugify($this->name);
-    }
-
-    public function __toString(): string
-    {
-        return $this->name;
     }
 }
