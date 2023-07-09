@@ -29,6 +29,7 @@ class ArticleCrudController extends AbstractCrudController
             TextField::new('shortTitle', 'Titre court'),
             TextField::new('author', 'Auteurice')->onlyWhenCreating(),
             AssociationField::new('categorie', 'Catégorie'),
+            TextField::new('author', 'Auteurice')->setPermission('ROLE_ADMIN'),
             TextEditorField::new('text', 'Texte'),
             ImageField::new('coverImage', 'Image de couverture')
                 ->setBasePath(Article::UPLOAD_IMAGES_BASE_PATH)
