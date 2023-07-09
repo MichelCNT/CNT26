@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Entity\Categorie;
+use App\Entity\Contact;
 use App\Entity\File;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -56,6 +57,12 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
             MenuItem::linkToCrud('Ajout de fichier', 'fas fa-plus', File::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Voir les fichiers', 'fas fa-eye', File ::class)
+        ]);
+
+        yield MenuItem::section('Contacts');
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+//            MenuItem::linkToCrud('Modification des informations', 'fa-solid fa-pen-to-square', Contact::class)->setAction(Crud::PAGE_EDIT),
+            MenuItem::linkToCrud('Voir les informations', 'fas fa-eye', Contact::class)
         ]);
 
         if ($this->isGranted('ROLE_ADMIN')) {

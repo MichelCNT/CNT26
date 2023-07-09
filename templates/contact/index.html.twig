@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container px-4 py-5" id="custom-cards">
+        <h2 class="pb-2 border-bottom">Contacts</h2>
+        {% if contact is not null %}
+            <p>E-mail: {{ contact.email }}</p>
+            <p>Adresse postale: {{ contact.postal }}</p>
+            <p>Téléphone: {{ contact.phone }}</p>
+        {% else %}
+            <p>Aucune information n'a été trouver merci de contacter le webmaster à ...</p>
+        {% endif %}
+    </div>
+{% endblock %}
