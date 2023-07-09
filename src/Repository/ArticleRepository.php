@@ -63,6 +63,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function getLatestArticle($limit)
     {
         return $this->createQueryBuilder('article')
+            ->andWhere('article.active = true')
             ->orderBy('article.createdAt', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()

@@ -7,6 +7,7 @@ use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -33,6 +34,7 @@ class ArticleCrudController extends AbstractCrudController
                 ->setBasePath(Article::UPLOAD_IMAGES_BASE_PATH)
                 ->setUploadDir(Article::UPLOAD_PATH_COMPLETE)
                 ->setRequired(false),
+            BooleanField::new('active', 'Publier')->setPermission('ROLE_ADMIN'),
             DateTimeField::new('createdAt', 'Date de création')->hideOnForm(),
             DateTimeField::new('updatedAt', 'Date de mise à jour')->hideOnForm(),
         ];

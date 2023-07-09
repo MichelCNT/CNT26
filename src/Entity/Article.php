@@ -51,6 +51,9 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?Categorie $categorie = null;
 
+    #[ORM\Column]
+    private ?bool $active = null;
+
     /**
      * @return DateTimeImmutable|null
      */
@@ -164,7 +167,20 @@ class Article
         return $this;
     }
 
-    public function getCoverImagePath() {
+    public function getCoverImagePath()
+    {
         return "/" . self::UPLOAD_IMAGES_BASE_PATH . "/" . $this->coverImage;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): static
+    {
+        $this->active = $active;
+
+        return $this;
     }
 }
