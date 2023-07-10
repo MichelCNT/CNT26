@@ -25,8 +25,8 @@ class FileCrudController extends AbstractCrudController
         return [
             TextField::new('name', 'Nom du fichier'),
             BooleanField::new('active', 'Activé ?'),
-            AssociationField::new('files', 'Fichiers'),
-            AssociationField::new('file', 'Fichier Parent')->hideOnForm(),
+            AssociationField::new('files', 'Fichiers')->hideOnForm(),
+            AssociationField::new('file', 'Fichier parent')->setRequired(false),
             ImageField::new('filePath', 'Contenu')
                 ->setBasePath(Article::UPLOAD_IMAGES_BASE_PATH)
                 ->setUploadDir(Article::UPLOAD_PATH_COMPLETE)

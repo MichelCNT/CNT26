@@ -24,7 +24,7 @@ class ArticleController extends AbstractController
     {
         return $this->render('article/show.html.twig', [
             'article' => $article,
-            'others' => $articleRepository->findByCategory($article->getId(), $article->getCategorie(), 3)
+            'others' => $articleRepository->findByCategory($article->getId(), $article->getCategorie())
         ]);
     }
 }

@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container px-4 py-5" id="custom-cards">
+    <div class="container" id="custom-cards">
         {% include 'files/componant/_nav.html.twig' %}
-        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5"
+        >
             {% for file in files %}
                 <div class="col">
                     <a class="text-decoration-none"
@@ -16,6 +17,14 @@
                     </a>
                 </div>
             {% endfor %}
+            <div hx-get="{{ url('app_files_index', {'page': files.currentPageNumber + 1}) }}"
+                 hx-trigger="revealed"
+                 hx-swap="outerHTML">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+            </div>
         </div>
+
+
+        {#        {{ knp_pagination_render(files, 'componant/_pagination.html.twig') }} #}
     </div>
 {% endblock %}

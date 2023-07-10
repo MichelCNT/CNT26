@@ -1,0 +1,19 @@
+{% for file in files %}
+    <div class="col">
+        <a class="text-decoration-none"
+                {% if file.directory %}
+                    href="{{ path('app_file_show', {id: file.id, slug: file.slug}) }}"
+                {% endif %}
+        >
+            {% set vars = {'card': file} %}
+            {% include 'componant/_card.html.twig' with vars %}
+        </a>
+    </div>
+{% endfor %}
+{% if files.currentPageNumber < files.count %}
+    <div hx-get="{{ url('app_files_index', {'page': files.currentPageNumber + 1}) }}"
+         hx-trigger="revealed"
+         hx-swap="outerHTML">
+        <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+    </div>
+{% endif %}
