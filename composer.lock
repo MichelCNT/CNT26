@@ -15,16 +15,16 @@
         "reference": "652234ef5f1be844a2ae1c36ad1b4c88b05160f9"
       },
       "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cocur/slugify/zipball/652234ef5f1be844a2ae1c36ad1b4c88b05160f9",
-                "reference": "652234ef5f1be844a2ae1c36ad1b4c88b05160f9",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": "^7.1 || ~8.0.0 || ~8.1.0 || ~8.2.0"
-            },
-            "conflict": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/cocur/slugify/zipball/652234ef5f1be844a2ae1c36ad1b4c88b05160f9",
+        "reference": "652234ef5f1be844a2ae1c36ad1b4c88b05160f9",
+        "shasum": ""
+      },
+      "require": {
+        "ext-mbstring": "*",
+        "php": "^7.1 || ~8.0.0 || ~8.1.0 || ~8.2.0"
+      },
+      "conflict": {
                 "symfony/config": "<3.4 || >=4,<4.3",
                 "symfony/dependency-injection": "<3.4 || >=4,<4.3",
                 "symfony/http-kernel": "<3.4 || >=4,<4.3",
@@ -650,15 +650,15 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+              "MIT"
             ],
-            "description": "A small layer on top of trigger_error(E_USER_DEPRECATED) or PSR-3 logging with options to disable all deprecations or selectively for packages.",
-            "homepage": "https://www.doctrine-project.org/",
-            "support": {
-                "issues": "https://github.com/doctrine/deprecations/issues",
-                "source": "https://github.com/doctrine/deprecations/tree/v1.1.1"
-            },
-            "time": "2023-06-03T09:27:29+00:00"
+          "description": "A small layer on top of trigger_error(E_USER_DEPRECATED) or PSR-3 logging with options to disable all deprecations or selectively for packages.",
+          "homepage": "https://www.doctrine-project.org/",
+          "support": {
+            "issues": "https://github.com/doctrine/deprecations/issues",
+            "source": "https://github.com/doctrine/deprecations/tree/v1.1.1"
+          },
+          "time": "2023-06-03T09:27:29+00:00"
         },
     {
       "name": "doctrine/doctrine-bundle",
@@ -684,16 +684,16 @@
         "symfony/config": "^5.4 || ^6.0",
         "symfony/console": "^5.4 || ^6.0",
         "symfony/dependency-injection": "^5.4 || ^6.0",
-                "symfony/deprecation-contracts": "^2.1 || ^3",
-                "symfony/doctrine-bridge": "^5.4.19 || ^6.0.7",
-                "symfony/framework-bundle": "^5.4 || ^6.0",
-                "symfony/service-contracts": "^1.1.1 || ^2.0 || ^3"
-            },
-            "conflict": {
-                "doctrine/annotations": ">=3.0",
-                "doctrine/orm": "<2.11 || >=3.0",
-                "twig/twig": "<1.34 || >=2.0 <2.4"
-            },
+        "symfony/deprecation-contracts": "^2.1 || ^3",
+        "symfony/doctrine-bridge": "^5.4.19 || ^6.0.7",
+        "symfony/framework-bundle": "^5.4 || ^6.0",
+        "symfony/service-contracts": "^1.1.1 || ^2.0 || ^3"
+      },
+      "conflict": {
+        "doctrine/annotations": ">=3.0",
+        "doctrine/orm": "<2.11 || >=3.0",
+        "twig/twig": "<1.34 || >=2.0 <2.4"
+      },
             "require-dev": {
                 "doctrine/annotations": "^1 || ^2",
                 "doctrine/coding-standard": "^9.0",
@@ -1525,15 +1525,15 @@
             "license": [
                 "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Jeremy Dorn",
-                    "email": "jeremy@jeremydorn.com",
-                    "homepage": "https://jeremydorn.com/"
-                }
-            ],
-            "description": "a PHP SQL highlighting library",
-            "homepage": "https://github.com/doctrine/sql-formatter/",
+          "authors": [
+            {
+              "name": "Jeremy Dorn",
+              "email": "jeremy@jeremydorn.com",
+              "homepage": "https://jeremydorn.com/"
+            }
+          ],
+          "description": "a PHP SQL highlighting library",
+          "homepage": "https://github.com/doctrine/sql-formatter/",
           "keywords": [
             "highlight",
             "sql"
@@ -1568,16 +1568,16 @@
         "symfony/config": "^5.4|^6.0",
         "symfony/dependency-injection": "^5.4|^6.0",
         "symfony/deprecation-contracts": "^3.0",
-                "symfony/doctrine-bridge": "^5.4|^6.0",
-                "symfony/event-dispatcher": "^5.4|^6.0",
-                "symfony/filesystem": "^5.4|^6.0",
-                "symfony/form": "^5.4|^6.0",
-                "symfony/framework-bundle": "^5.4|^6.0",
-                "symfony/http-foundation": "^5.4|^6.0",
-                "symfony/http-kernel": "^5.4|^6.0",
-                "symfony/intl": "^5.4|^6.0",
-                "symfony/property-access": "^5.4|^6.0",
-                "symfony/security-bundle": "^5.4|^6.0",
+        "symfony/doctrine-bridge": "^5.4|^6.0",
+        "symfony/event-dispatcher": "^5.4|^6.0",
+        "symfony/filesystem": "^5.4|^6.0",
+        "symfony/form": "^5.4|^6.0",
+        "symfony/framework-bundle": "^5.4|^6.0",
+        "symfony/http-foundation": "^5.4|^6.0",
+        "symfony/http-kernel": "^5.4|^6.0",
+        "symfony/intl": "^5.4|^6.0",
+        "symfony/property-access": "^5.4|^6.0",
+        "symfony/security-bundle": "^5.4|^6.0",
                 "symfony/string": "^5.4|^6.0",
                 "symfony/translation": "^5.4|^6.0",
                 "symfony/twig-bundle": "^5.4|^6.0",
@@ -1695,15 +1695,15 @@
             ],
             "support": {
                 "issues": "https://github.com/egulias/EmailValidator/issues",
-                "source": "https://github.com/egulias/EmailValidator/tree/4.0.1"
+              "source": "https://github.com/egulias/EmailValidator/tree/4.0.1"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/egulias",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-01-14T14:17:03+00:00"
+          "funding": [
+            {
+              "url": "https://github.com/egulias",
+              "type": "github"
+            }
+          ],
+          "time": "2023-01-14T14:17:03+00:00"
         },
     {
       "name": "knplabs/knp-components",
@@ -1864,16 +1864,16 @@
         "source": "https://github.com/KnpLabs/KnpPaginatorBundle/tree/v6.2.0"
       },
       "time": "2023-03-25T06:51:40+00:00"
-        },
-        {
-            "name": "league/commonmark",
-            "version": "2.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "d44a24690f16b8c1808bf13b1bd54ae4c63ea048"
-            },
-            "dist": {
+    },
+    {
+      "name": "league/commonmark",
+      "version": "2.4.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/thephpleague/commonmark.git",
+        "reference": "d44a24690f16b8c1808bf13b1bd54ae4c63ea048"
+      },
+      "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d44a24690f16b8c1808bf13b1bd54ae4c63ea048",
                 "reference": "d44a24690f16b8c1808bf13b1bd54ae4c63ea048",
@@ -2451,16 +2451,16 @@
                     "phpDocumentor\\Reflection\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mike van Riel",
-                  "email": "me@mikevanriel.com"
-                }
-            ],
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Mike van Riel",
+              "email": "me@mikevanriel.com"
+            }
+          ],
           "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
           "support": {
             "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
@@ -2492,16 +2492,16 @@
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^1.5",
         "phpstan/phpstan-phpunit": "^1.1",
-                "phpstan/phpstan-strict-rules": "^1.0",
-                "phpunit/phpunit": "^9.5",
-                "symfony/process": "^5.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "PHPStan\\PhpDocParser\\": [
-                        "src/"
-                    ]
+        "phpstan/phpstan-strict-rules": "^1.0",
+        "phpunit/phpunit": "^9.5",
+        "symfony/process": "^5.2"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "PHPStan\\PhpDocParser\\": [
+            "src/"
+          ]
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -8964,15 +8964,15 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-timer/issues",
-                "source": "https://github.com/sebastianbergmann/php-timer/tree/5.0.3"
+              "source": "https://github.com/sebastianbergmann/php-timer/tree/5.0.3"
             },
-            "funding": [
-                {
-                    "url": "https://github.com/sebastianbergmann",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-10-26T13:16:10+00:00"
+          "funding": [
+            {
+              "url": "https://github.com/sebastianbergmann",
+              "type": "github"
+            }
+          ],
+          "time": "2020-10-26T13:16:10+00:00"
         },
       {
         "name": "phpunit/phpunit",
@@ -8988,16 +8988,16 @@
           "reference": "a6d351645c3fe5a30f5e86be6577d946af65a328",
           "shasum": ""
         },
-            "require": {
-                "doctrine/instantiator": "^1.3.1 || ^2",
-                "ext-dom": "*",
-                "ext-json": "*",
-                "ext-libxml": "*",
-                "ext-mbstring": "*",
-                "ext-xml": "*",
-                "ext-xmlwriter": "*",
-                "myclabs/deep-copy": "^1.10.1",
-                "phar-io/manifest": "^2.0.3",
+        "require": {
+          "doctrine/instantiator": "^1.3.1 || ^2",
+          "ext-dom": "*",
+          "ext-json": "*",
+          "ext-libxml": "*",
+          "ext-mbstring": "*",
+          "ext-xml": "*",
+          "ext-xmlwriter": "*",
+          "myclabs/deep-copy": "^1.10.1",
+          "phar-io/manifest": "^2.0.3",
                 "phar-io/version": "^3.0.2",
                 "php": ">=7.3",
                 "phpunit/php-code-coverage": "^9.2.13",

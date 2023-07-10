@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Entity\Contact;
 use App\Entity\File;
+use App\Entity\Newsletter;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -63,6 +64,12 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
 //            MenuItem::linkToCrud('Modification des informations', 'fa-solid fa-pen-to-square', Contact::class)->setAction(Crud::PAGE_EDIT),
             MenuItem::linkToCrud('Voir les informations', 'fas fa-eye', Contact::class)
+        ]);
+
+        yield MenuItem::section('Newsletter');
+        yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
+            MenuItem::linkToCrud('Ajout une adresse', 'fa-solid fa-pen-to-square', Newsletter::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Voir les adresses', 'fas fa-eye', Newsletter::class)
         ]);
 
         if ($this->isGranted('ROLE_ADMIN')) {
