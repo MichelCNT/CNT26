@@ -167,7 +167,7 @@ class Article
         return $this;
     }
 
-    public function getCoverImagePath()
+    public function getFileBasePath()
     {
         return "/" . self::UPLOAD_IMAGES_BASE_PATH . "/" . $this->coverImage;
     }

@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="container px-4 py-5" id="custom-cards">
-        {% include 'files/componant/nav.html.twig' %}
+        {% include 'files/componant/_nav.html.twig' %}
         <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
             {% for file in files %}
                 <div class="col">
@@ -11,18 +11,8 @@
                                 href="{{ path('app_file_show', {id: file.id, slug: file.slug}) }}"
                             {% endif %}
                     >
-                        <div class="card card-cover overflow-hidden rounded-4 shadow-lg"
-                             style="background-image: url('{{ file.FileBasePath }}');">
-                            <div class="publication d-flex flex-column h-100 p-5 pb-3 text-white">
-                                <h4 class="pt-5 text-shadow-white mb-4 fw-bold text-danger">{{ file.name }}</h4>
-                                <ul class="d-flex list-unstyled mt-auto">
-                                    <li class="me-auto">
-                                        <img src="{{ asset('img/chat.jpg') }}" alt="Anarchat"
-                                             class="rounded-circle border border-white" width="32" height="32">
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        {% set vars = {'card': file} %}
+                        {% include 'componant/_card.html.twig' with vars %}
                     </a>
                 </div>
             {% endfor %}
