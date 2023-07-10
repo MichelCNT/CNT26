@@ -17,10 +17,12 @@
                     <div class="carousel-item {{ count != 0 ? '' : 'active' }}">
                         <img src="{{ news.fileBasePath }}" alt="Illustration {{ news.Title }}" class="d-block">
                         <div class="container">
-                            <div class="carousel-caption carousel-caption-bg">
+                            <a class="text-decoration-none carousel-caption carousel-caption-bg"
+                               href="{{ path('app_article_show', {id: news.id, slug: news.slug}) }}">
                                 <h5 class="fs-4 fw-bold text-white text-shadow">{{ news.Title }}</h5>
                                 <p class="fs-6 fw-bold text-white text-shadow">{{ news.text | striptags | slice(0, 100) ~ '...' }}</p>
-                            </div>
+
+                            </a>
                         </div>
                     </div>
                     {% set count = count + 1 %}
