@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use ACSEO\TypesenseBundle\Finder\TypesenseQuery;
 use App\Entity\Newsletter;
 use App\Repository\ArticleRepository;
 use App\Repository\NewsletterRepository;
@@ -15,6 +16,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
+    private $finder;
+
+    public function __construct($articleFinder)
+    {
+        $this->finder = $articleFinder;
+    }
+
+
     /**
      * @throws TransportExceptionInterface
      */
@@ -29,6 +38,17 @@ class IndexController extends AbstractController
             'manif' => $articleRepository->findOneBy(['title' => 'Les manifestations']),
             'adherer' => $articleRepository->findOneBy(['title' => 'Adhérer']),
             'carousselNews' => $articleRepository->getLatestArticle(3),
+        ]);
+    }
+
+    #[Route('/search', name: 'app_search', methods: ['POST'])]
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $query = new TypesenseQuery($search, 'title, shortTitle, author, category_name, text');
+        $result = $this->finder->query($query)->getResults();
+        return $this->render('search/index.html.twig', [
+            'datas' => $result,
         ]);
     }
 

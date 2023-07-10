@@ -14,9 +14,12 @@
         </ul>
 
         <form class="d-flex" role="search">
-            <input type="search" class="form-control form-control-dark" placeholder="Chercher un article"
-                   aria-label="Search">
-            <button class="btn btn-outline-danger ms-1" type="submit"><i class="fas fa-search"></i></button>
+            <input type="search" name="search" class="form-control form-control-dark" placeholder="Chercher un article"
+                   aria-label="Search"
+                   hx-post="/search"
+                   hx-trigger="keyup changed delay:500ms, search"
+                   hx-target="#main"
+                   hx-indicator=".htmx-indicator">
         </form>
     </div>
 </nav>
