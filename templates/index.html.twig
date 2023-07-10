@@ -15,7 +15,7 @@
                 {% set count = 0 %}
                 {% for news in carousselNews %}
                     <div class="carousel-item {{ count != 0 ? '' : 'active' }}">
-                        <img src="{{ news.coverImagePath }}" alt="Illustration {{ news.Title }}" class="d-block">
+                        <img src="{{ news.fileBasePath }}" alt="Illustration {{ news.Title }}" class="d-block">
                         <div class="container">
                             <div class="carousel-caption carousel-caption-bg">
                                 <h5 class="fs-4 fw-bold text-white text-shadow">{{ news.Title }}</h5>

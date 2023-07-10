@@ -1,0 +1,16 @@
+{% for publication in publications %}
+    <div class="col">
+        <a class="text-decoration-none"
+           href="{{ path('app_article_show', {id: publication.id, slug: publication.slug}) }}">
+            {% set vars = {'card': publication} %}
+            {% include 'componant/_card.html.twig' with vars %}
+        </a>
+    </div>
+{% endfor %}
+{% if publications.currentPageNumber < publications.count %}
+    <div hx-get="{{ url('app_article_index', {'page': publications.currentPageNumber + 1}) }}"
+         hx-trigger="revealed"
+         hx-swap="outerHTML">
+        <i class="fa-solid fa-spinner fa-spin-pulse fa-2xl"></i>
+    </div>
+{% endif %}
