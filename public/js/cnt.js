@@ -7,6 +7,9 @@ htmx.on('htmx:afterRequest', (e) => {
     if (e.detail.failed) {
         let obj = JSON.parse(e.detail.xhr.response)
         toast.show()
-        toastBody.innerHTML = "<p class='mb-0'>Une erreure c'est produite !</p> (" + obj.error + ")"
+        toastBody.innerHTML = "<p class='mb-0'>Une erreur s'est produite !</p> (" + obj.error + ")"
+    } else {
+        toast.show()
+        toastBody.innerHTML = "<p class='mb-0'>Informations bien enregistrées</p>"
     }
 })
