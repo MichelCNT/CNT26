@@ -82,3 +82,8 @@
 .img-card {
     min-height: 350px;
 }
+
+.fixed {
+    position: fixed;
+    z-index: 1030;
+}

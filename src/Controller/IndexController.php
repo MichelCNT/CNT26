@@ -57,13 +57,12 @@ class IndexController extends AbstractController
     public function addNewsletterEmail(Request $request, NewsletterRepository $repository, MailerInterface $mailer): Response
     {
         $email = $request->get('email');
+        $result = "";
         if ($email != null) {
             $newsletter = new Newsletter();
             $newsletter->setEmail($email);
             $result = $repository->save($newsletter, true);
-            if ($result != "") {
-                $this->addFlash('error', 'Email déjà existante');
-            } else {
+            if ($result == "") {
                 $mail = (new Email())
                     ->from('noreply@cnt.org')
                     ->to($email)
@@ -71,9 +70,9 @@ class IndexController extends AbstractController
                     ->subject('Bienvenue dans la Newsletter')
                     ->text('Je suis un test body text');
                 $mailer->send($mail);
+                return $this->render('componant/_form_newsletter.html.twig');
             }
-            return $this->render('componant/_form_newsletter.html.twig');
         }
-        throw new BadRequestHttpException();
+        return new Response(json_encode(['error' => "Adresse mail déjà enregistrée"]), 400);
     }
 }
