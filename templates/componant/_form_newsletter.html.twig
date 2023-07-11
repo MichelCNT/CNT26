@@ -1,0 +1,10 @@
+<form hx-put="/newsletter" hx-swap="outerHTML" class="p-4 p-md-5 border border-0 rounded-3 bg-dark">
+    <div class="form-floating mb-3">
+        <input required type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+        <label for="email">Adresse mail</label>
+        {#                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('') }}"> #}
+    </div>
+    <button class="w-100 btn btn-lg btn-danger">S'abonner</button>
+    <hr class="hr-danger my-4">
+    <small class="text-white">En cliquant sur le bouton, vous acceptez nos termes d'utilisations</small>
+</form>

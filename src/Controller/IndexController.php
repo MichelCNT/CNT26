@@ -9,6 +9,7 @@ use App\Repository\NewsletterRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -23,15 +24,9 @@ class IndexController extends AbstractController
         $this->finder = $articleFinder;
     }
 
-
-    /**
-     * @throws TransportExceptionInterface
-     */
     #[Route('/', name: 'app_index', methods: ['GET', 'POST'])]
-    public function index(Request $request, ArticleRepository $articleRepository, NewsletterRepository $repository, MailerInterface $mailer): Response
+    public function index(ArticleRepository $articleRepository): Response
     {
-        $email = $request->get('email');
-        if ($email != null) $this->addNewsletterEmail($email, $repository, $mailer);
         return $this->render('index.html.twig', [
             'whatCNT' => $articleRepository->findOneBy(['title' => 'La CNT c\'est quoi ?']),
             'nosLuttes' => $articleRepository->findOneBy(['title' => 'Nos luttes']),
@@ -42,30 +37,43 @@ class IndexController extends AbstractController
     }
 
     #[Route('/search', name: 'app_search', methods: ['POST'])]
-    public function search(Request $request)
+    public function search(Request $request): Response
     {
-        $search = $request->get('search');
-        $query = new TypesenseQuery($search, 'title, shortTitle, author, category_name, text');
-        $result = $this->finder->query($query)->getResults();
-        return $this->render('search/index.html.twig', [
-            'datas' => $result,
-        ]);
+        if ($request->headers->get('hx-request')) {
+            $search = $request->get('search');
+            $query = new TypesenseQuery($search, 'title, shortTitle, author, category_name, text');
+            $result = $this->finder->query($query)->getResults();
+            return $this->render('search/index.html.twig', [
+                'datas' => $result,
+            ]);
+        }
+        throw new BadRequestHttpException();
     }
 
     /**
      * @throws TransportExceptionInterface
      */
-    private function addNewsletterEmail(string $email, NewsletterRepository $repository, MailerInterface $mailer): void
+    #[Route('/newsletter', name: 'app_newsletter', methods: ['PUT'])]
+    public function addNewsletterEmail(Request $request, NewsletterRepository $repository, MailerInterface $mailer): Response
     {
-        $newsletter = new Newsletter();
-        $newsletter->setEmail($email);
-        $repository->save($newsletter, true);
-        $mail = (new Email())
-            ->from('noreply@cnt.org')
-            ->to($email)
-            ->replyTo('contact@cnt.org')
-            ->subject('Bienvenue dans la Newsletter')
-            ->text('Je suis un test body text');
-        $mailer->send($mail);
+        $email = $request->get('email');
+        if ($email != null) {
+            $newsletter = new Newsletter();
+            $newsletter->setEmail($email);
+            $result = $repository->save($newsletter, true);
+            if ($result != "") {
+                $this->addFlash('error', 'Email déjà existante');
+            } else {
+                $mail = (new Email())
+                    ->from('noreply@cnt.org')
+                    ->to($email)
+                    ->replyTo('contact@cnt.org')
+                    ->subject('Bienvenue dans la Newsletter')
+                    ->text('Je suis un test body text');
+                $mailer->send($mail);
+            }
+            return $this->render('componant/_form_newsletter.html.twig');
+        }
+        throw new BadRequestHttpException();
     }
 }

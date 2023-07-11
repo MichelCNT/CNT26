@@ -120,16 +120,7 @@
                 <p class="col-lg-10 fs-4">Ne manquez plus aucun évènement de la CNT 26 en vous inscrivant à la newsletter !</p>
             </div>
             <div class="col-md-10 mx-auto col-lg-5 ">
-                <form class="p-4 p-md-5 border border-0 rounded-3 bg-dark" method="post">
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
-                        <label for="email">Adresse mail</label>
-{#                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('') }}"> #}
-                    </div>
-                    <button class="w-100 btn btn-lg btn-danger" type="submit">S'abonner</button>
-                    <hr class="hr-danger my-4">
-                    <small class="text-white">En cliquant sur le bouton, vous acceptez nos termes d'utilisations</small>
-                </form>
+                {% include 'componant/_form_newsletter.html.twig' %}
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Newsletter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -21,13 +22,18 @@ class NewsletterRepository extends ServiceEntityRepository
         parent::__construct($registry, Newsletter::class);
     }
 
-    public function save(Newsletter $entity, bool $flush = false): void
+    public function save(Newsletter $entity, bool $flush = false): string
     {
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
-            $this->getEntityManager()->flush();
+            try {
+                $this->getEntityManager()->flush();
+            } catch (UniqueConstraintViolationException $exception) {
+                return $exception->getMessage();
+            }
         }
+        return "";
     }
 
     public function remove(Newsletter $entity, bool $flush = false): void
