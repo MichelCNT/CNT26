@@ -3,8 +3,7 @@
 {% block body %}
     <div class="container" id="custom-cards">
         {% include 'files/componant/_nav.html.twig' %}
-        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5"
-        >
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" id="disable">
             {% for file in files %}
                 <div class="col">
                     <a class="text-decoration-none"
