@@ -16,4 +16,8 @@ return [
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
     ACSEO\TypesenseBundle\ACSEOTypesenseBundle::class => ['all' => true],
+    Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle::class => ['all' => true],
+    Sonata\Form\Bridge\Symfony\SonataFormBundle::class => ['all' => true],
+    Sonata\BlockBundle\SonataBlockBundle::class => ['all' => true],
+    Nucleos\SeoBundle\NucleosSeoBundle::class => ['all' => true],
 ];
