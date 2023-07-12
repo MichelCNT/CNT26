@@ -15,7 +15,8 @@
                 {% set count = 0 %}
                 {% for news in carousselNews %}
                     <div class="carousel-item {{ count != 0 ? '' : 'active' }}">
-                        <img src="{{ news.fileBasePath }}" alt="Illustration {{ news.Title }}" class="d-block">
+                        <img loading="lazy" src="{{ news.fileBasePath }}" alt="Illustration {{ news.Title }}"
+                             class="d-block">
                         <div class="container">
                             <a class="text-decoration-none carousel-caption carousel-caption-bg"
                                href="{{ path('app_article_show', {id: news.id, slug: news.slug}) }}">
@@ -55,7 +56,7 @@
                            class="icon-link gap-1 icon-link-hover stretched-link">En savoir plus</a>
                     </div>
                     <div class="col-auto d-none d-lg-block">
-                        <img src="{{ asset('img/640px-Logo_CNT.svg.png') }}" width="320px" height="300px"
+                        <img loading="lazy" src="{{ asset('img/640px-Logo_CNT.svg.png') }}" width="320px" height="300px"
                              alt="Logo de la CNT">
                     </div>
                 </div>
@@ -71,7 +72,8 @@
                         </a>
                     </div>
                     <div class="col-auto d-none d-lg-block">
-                        <img src="{{ asset('img/affiche-babouse-web-2.jpg') }}" alt="Affiche lutte de la poste"
+                        <img loading="lazy" src="{{ asset('img/affiche-babouse-web-2.jpg') }}"
+                             alt="Affiche lutte de la poste"
                              height="300px">
                     </div>
                 </div>
@@ -83,33 +85,37 @@
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
                         <strong class="d-inline-block mb-2 text-primary-emphasis">Actualité</strong>
-                    <h3 class="mb-0">Les manifestations</h3>
-                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-                         En savoir plus
-                    </a>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                    <img src="{{ asset('img/Code-travail_resistons_cnt-4d250.jpg') }}" height="350px" alt="Illustration de manifestation">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-success-emphasis">Information</strong>
-                    <h3 class="mb-0">Adhérer</h3>
-                    <div class="mb-1 text-body-secondary">Ne nous regardez, pas rejoignez-nous !</div>
-                    <p class="mb-auto">Tu veux nous rejoindre, car tes convictions sont les mêmes que nous alors rejoins nous !</p>
-                    <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-                        En savoir plus
-                    </a>
-                </div>
-                <div class="col-auto d-none d-lg-block">
-                    <img src="{{ asset('img/logoSII.jpg') }}" height="350px" alt="Illustration d'adhésion">
+                        <h3 class="mb-0">Les manifestations</h3>
+                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
+                            lead-in to additional content.</p>
+                        <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                            En savoir plus
+                        </a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img loading="lazy" src="{{ asset('img/Code-travail_resistons_cnt-4d250.jpg') }}" height="350px"
+                             alt="Illustration de manifestation">
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="col-md-6">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-success-emphasis">Information</strong>
+                        <h3 class="mb-0">Adhérer</h3>
+                        <div class="mb-1 text-body-secondary">Ne nous regardez, pas rejoignez-nous !</div>
+                        <p class="mb-auto">Tu veux nous rejoindre, car tes convictions sont les mêmes que nous alors
+                            rejoins nous !</p>
+                        <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                            En savoir plus
+                        </a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img loading="lazy" src="{{ asset('img/logoSII.jpg') }}" height="350px"
+                             alt="Illustration d'adhésion">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="bg-red mb-5 mt-5">
