@@ -1,14 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container px-4 py-5">
-        <h2 class="pb-2 border-bottom">Contacts</h2>
+    <div class="container px-4 py-5 text-center">
+        <h2 class="pb-2 border-bottom"><strong>Contact</strong></h2>
+        <img class="img-contact mb-4" src="{{ asset('img/cnt-info.jpg') }}" alt="info cnt">
         {% if contact is not null %}
-            <p>E-mail: {{ contact.email }}</p>
-            <p>Adresse postale: {{ contact.postal }}</p>
-            <p>Téléphone: {{ contact.phone }}</p>
+            <p><strong>E-mail :</strong> <br>{{ contact.email }}</p>
+            <p><strong>Adresse postale :</strong> <br>{{ contact.postal }}</p>
+            <p><strong>Téléphone :</strong> <br>{{ contact.phone }}</p>
         {% else %}
             <p>Aucune information n'a été trouver merci de contacter le webmaster à ...</p>
         {% endif %}
     </div>
+
+    {% include 'componant/_newsletter.twig' %}
 {% endblock %}

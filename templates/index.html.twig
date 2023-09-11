@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container mt-5">
+    <div class="container mt-2">
         <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <h3 class="text-center">Dernières publications</h3>
             <div class="carousel-indicators">
                 {% set count = 0 %}
                 {% for news in carousselNews %}
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ count }}"
-                            class="{{ count != 0 ? '' : 'active' }}" aria-current="true" aria-label="Slide 1"></button>
+                            class="{{ count != 0 ? '' : 'active' }}" aria-current="true"
+                            aria-label="{{ news.Title }}"></button>
                     {% set count = count + 1 %}
                 {% endfor %}
             </div>
@@ -21,14 +23,14 @@
                             <a class="text-decoration-none carousel-caption carousel-caption-bg"
                                href="{{ path('app_article_show', {id: news.id, slug: news.slug}) }}">
                                 <h5 class="fs-4 fw-bold text-white text-shadow">{{ news.Title }}</h5>
-                                <p class="fs-6 fw-bold text-white text-shadow">{{ news.text | striptags | slice(0, 100) ~ '...' }}</p>
-
+                                <p class="fs-6 fw-bold text-white text-shadow">{{ news.text | striptags | slice(0, 50) }}</p>
                             </a>
                         </div>
                     </div>
                     {% set count = count + 1 %}
                 {% endfor %}
             </div>
+
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
                     data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -46,8 +48,11 @@
         <div class="row mb-2">
             <div class="col-md-6">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col-auto d-none d-lg-block">
+                        <img loading="lazy" src="{{ asset('img/640px-Logo_CNT.svg.png') }}"
+                             alt="Logo de la CNT">
+                    </div>
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary-emphasis">Information</strong>
                         <h3 class="mb-0">La CNT, c'est quoi ?</h3>
                         <div class="mb-1 text-body-secondary">La CNT un syndicat de combat !</div>
                         <p class="card-text mb-auto">Le nom de la CNT circule désormais régulièrement sur les tracts,
@@ -55,27 +60,24 @@
                         <a href="{{ path('app_article_show', {id: whatCNT.id, slug: whatCNT.slug }) }}"
                            class="icon-link gap-1 icon-link-hover stretched-link">En savoir plus</a>
                     </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <img loading="lazy" src="{{ asset('img/640px-Logo_CNT.svg.png') }}" width="320px" height="300px"
-                             alt="Logo de la CNT">
-                    </div>
+
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col-auto d-none d-lg-block">
+                        <img loading="lazy" src="{{ asset('img/affiche-babouse-web-2.jpg') }}"
+                             alt="Affiche lutte de la poste">
+                    </div>
                     <div class="col p-4 d-flex flex-column position-static">
                         <strong class="d-inline-block mb-2 text-success-emphasis">Information</strong>
-                        <h3 class="mb-0">Nos luttes</h3>
+                        <h3 class="mb-0">Agenda</h3>
                         <p class="card-text mb-auto">Text d'accroche pour dire nos luttes</p>
                         <a href="" class="icon-link gap-1 icon-link-hover stretched-link">
                             En savoir plus
                         </a>
                     </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <img loading="lazy" src="{{ asset('img/affiche-babouse-web-2.jpg') }}"
-                             alt="Affiche lutte de la poste"
-                             height="300px">
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -83,25 +85,30 @@
         <div class="row mb-2">
             <div class="col-md-6">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col-auto d-none d-lg-block">
+                        <img loading="lazy" src="{{ asset('img/Code-travail_resistons_cnt-4d250.jpg') }}"
+                             alt="Illustration de manifestation">
+                    </div>
                     <div class="col p-4 d-flex flex-column position-static">
                         <strong class="d-inline-block mb-2 text-primary-emphasis">Actualité</strong>
-                        <h3 class="mb-0">Les manifestations</h3>
+                        <h3 class="mb-0">Publications & communiqués de presse</h3>
                         <p class="card-text mb-auto">This is a wider card with supporting text below as a natural
                             lead-in to additional content.</p>
-                        <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                        <a href="{{ path('app_article_index') }}"
+                           class="icon-link gap-1 icon-link-hover stretched-link">
                             En savoir plus
                         </a>
                     </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <img loading="lazy" src="{{ asset('img/Code-travail_resistons_cnt-4d250.jpg') }}" height="350px"
-                             alt="Illustration de manifestation">
-                    </div>
+
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col-auto d-none d-lg-block">
+                        <img loading="lazy" src="{{ asset('img/logoSII.jpg') }}"
+                             alt="Illustration d'adhésion">
+                    </div>
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-success-emphasis">Information</strong>
                         <h3 class="mb-0">Adhérer</h3>
                         <div class="mb-1 text-body-secondary">Ne nous regardez, pas rejoignez-nous !</div>
                         <p class="mb-auto">Tu veux nous rejoindre, car tes convictions sont les mêmes que nous alors
@@ -110,26 +117,11 @@
                             En savoir plus
                         </a>
                     </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <img loading="lazy" src="{{ asset('img/logoSII.jpg') }}" height="350px"
-                             alt="Illustration d'adhésion">
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <div class="bg-red mb-5 mt-5">
-        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-            <div class="row align-items-center g-lg-5 py-5">
-                <div class="col-lg-7 text-center text-lg-start">
-                    <h1 class="display-4 fw-bold lh-1 mb-3 text-white">S'abonner à la newsletter</h1>
-                    <p class="col-lg-10 fs-4 text-white">Ne manquez plus aucun évènement de la CNT 26 en vous inscrivant
-                        à la newsletter !</p>
-                </div>
-                <div class="col-md-10 mx-auto col-lg-5 ">
-                    {% include 'componant/_form_newsletter.html.twig' %}
-            </div>
-        </div>
-    </div>
+    {% include 'componant/_newsletter.twig' %}
 </div>
 {% endblock %}

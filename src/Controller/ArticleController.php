@@ -17,7 +17,7 @@ class ArticleController extends AbstractController
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $data = $articleRepository->findBy(['active' => true]);
+        $data = $articleRepository->findBy(['active' => true], ['createdAt' => 'DESC']);
         $view = 'article/index.html.twig';
         if ($request->headers->get('hx-request')) $view = 'article/index.htmx.twig';
 

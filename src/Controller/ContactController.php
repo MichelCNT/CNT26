@@ -14,7 +14,7 @@ class ContactController extends AbstractController
     public function index(ContactRepository $repository): Response
     {
         return $this->render('contact/index.html.twig', [
-            'contact' => $repository->find(1)
+            'contact' => $repository->find(3)
         ]);
     }
 }

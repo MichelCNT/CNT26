@@ -1,5 +1,5 @@
 <div class="card card-cover overflow-hidden rounded-4 shadow-lg"
-     style="background-image: url('{{ card.fileBasePath }}');">
+     style="background-image: url('{{ card.fileBasePath }}'); background-size: 100%; background-repeat: no-repeat;">
     <div class="publication d-flex flex-column h-100 p-5 pb-3 text-white">
         {% if card.text is defined %}
             <p class="publication-text text-danger ">{{ card.text | striptags | slice(0, 100) ~ '...' }}</p>

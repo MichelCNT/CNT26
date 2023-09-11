@@ -29,7 +29,6 @@ class IndexController extends AbstractController
     {
         return $this->render('index.html.twig', [
             'whatCNT' => $articleRepository->findOneBy(['title' => 'La CNT c\'est quoi ?']),
-            'nosLuttes' => $articleRepository->findOneBy(['title' => 'Nos luttes']),
             'manif' => $articleRepository->findOneBy(['title' => 'Les manifestations']),
             'adherer' => $articleRepository->findOneBy(['title' => 'Adhérer']),
             'carousselNews' => $articleRepository->getLatestArticle(3),
